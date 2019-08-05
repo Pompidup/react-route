@@ -1,41 +1,33 @@
-import React, { Component } from 'react';
-import { Route, BrowserRouter, Switch, NavLink } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch, Redirect } from "react-router-dom";
+
+import Home from './views/Home/Home';
+import About from './views/About/About';
+import TopicList from './views/TopicList/TopicList'
+import NoMatch from './views/NoMatch/NoMatch'
+import NavBar from './components/NavBar/NavBar';
+
 import './App.css';
-import Home from './Home';
-import History from './History';
 
-
-class App extends Component {
-
-  render() {
+export const App = () => {
     return (
-
-      <BrowserRouter>
-        <div>
-          <NavLink exact to="/"
-            activeStyle={{
-              fontWeight: "bold",
-              color: "red"
-            }}>
-            Home
-             </NavLink>
-          <NavLink to="/history"
-            activeStyle={{
-              fontWeight: "bold",
-              color: "red"
-            }}>
-            History
-               </NavLink>
-
-
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/history" component={History} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <div>
+        <NavBar />
+        <br />
+        <Switch>
+          <Route exact path="/Home" component={Home} />
+          <Route exact path="/">
+            <Redirect to="/Home" />
+          </Route>
+          <Route exact path="/About" component={About} />
+          {/* Cette route ne matchera jamais ! */}
+          <Route exact path="/About" component={Home} />
+          <Route exact path="/Topics" component={TopicList} />
+          <Route path="/Topics/:topicId" component={TopicList} />
+          <Route component={NoMatch} />
+        </Switch>
+      </div>
     );
   }
-}
-
+  
 export default App;

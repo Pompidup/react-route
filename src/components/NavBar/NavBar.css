@@ -1,0 +1,19 @@
+
+.NavBar {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .link {
+    float: left;
+    font-size: 16px;
+    color: red;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
